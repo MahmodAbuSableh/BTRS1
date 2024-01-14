@@ -1,0 +1,56 @@
+﻿@model IEnumerable<BTRS.Models.Trip>
+
+@{
+    ViewData["Title"] = "TrpsList";
+}
+
+<h1>Trips List</h1>
+
+<p>
+   
+    @Html.ActionLink("Create New", "trpCreate", "Admin", null, new { @class = "btn btn-primary" })
+  
+    @Html.ActionLink("Busses", "BussList", "Admin", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Destination)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BussNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Destination)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BussNumber)
+            </td>
+            <td>
+                    <a asp-action="trpEdit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="trpDetails" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="trpDelete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

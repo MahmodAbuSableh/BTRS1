@@ -1,0 +1,44 @@
+﻿@model IEnumerable<BTRS.Models.Buss>
+
+@{
+    ViewData["Title"] = "BussList";
+}
+
+<h1>BussList</h1>
+
+<p>
+   
+    @Html.ActionLink("Create New", "bussCreate", "Admin", null, new { @class = "btn btn-primary" })
+
+    @Html.ActionLink("Trips", "TrpsList", "Admin", null, new { @class = "btn btn-primary" })
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CapName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeatsNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SeatsNumber)
+            </td>
+            <td>
+                    <a asp-action="bussEdit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="bussDetails" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="bussDelete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

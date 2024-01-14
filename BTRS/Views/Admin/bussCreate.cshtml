@@ -1,0 +1,55 @@
+﻿@model BTRS.Models.Buss
+
+@{
+    ViewData["Title"] = "bussCreate";
+}
+
+<h1 class="text-center">Buss Create</h1>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-action="bussCreate">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="CapName" class="control-label">Cap Name</label>
+                    <input asp-for="CapName" class="form-control" />
+                    <span asp-validation-for="CapName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="SeatsNumber" class="control-label">Seats Number</label>
+                    <input asp-for="SeatsNumber" class="form-control" />
+                    <span asp-validation-for="SeatsNumber" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label">Trip ID</label>
+                    <select name="tripId" id="tripId" class="form-control">
+                        @for (int i = 0; i < ViewBag.trip.Count; i++)
+                        {
+                            <option value=@ViewBag.trip[i].Id>
+                                @ViewBag.trip[i].Id
+                            </option>
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group text-center">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center">
+    <a asp-action="BussList">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
